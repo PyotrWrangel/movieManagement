@@ -25,8 +25,9 @@ require_once "./connection_mysql/config.php";
         <h1>Benbenuto in FILMISSIMI</h1>
         <button class="button" id="loginButton"> Accedi </button>
         <h2>oppure</h2>
-        <button class="button" id="registerButton" type="submit"> Registrati </button>
+        <button class="button" id="registerButton"> Registrati </button>
         <div id="registerForm"></div>
+        <div id="loginForm"></div>
         <script src="script.js"></script>
         <h2> per utilizzare il servizio</h2>
     </div>
