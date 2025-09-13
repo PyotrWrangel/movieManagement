@@ -99,10 +99,3 @@ fetch("./pages/dashboard.php")
 
 
 
-    //debug risposta grezza
-      // .then(res => {
-  //   console.log("status", res.status);
-  //   return res.text();
-  // })
-  // .then(txt => console.log("risposta grezza:", txt))
-
