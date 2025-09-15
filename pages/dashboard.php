@@ -5,8 +5,14 @@ session_start();
 if(!isset($_SESSION['id'])) {
     echo json_encode(["messaggio" => "Non sei loggato", "response" => 0]);
     exit;
+} else {
+    echo json_encode([
+        "messaggio" => "Benvenuto" . $_SESSION['userName'],
+        "response" => 1
+
+    ]);
 }
-?>
+    ?>
 
 
 <!DOCTYPE html>
@@ -17,13 +23,9 @@ if(!isset($_SESSION['id'])) {
     <title>Document</title>
 </head>
 <body>
-    <?php
-
-    
-    echo "ciao " . $_SESSION['userName'];
-    ?>
     <p>AMLA AMLA</p>
+    <button id="logoutButton">Logout</button>
 
-    
+<script src="../script.js"></script>
 </body>
 </html>
