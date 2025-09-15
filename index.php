@@ -28,8 +28,10 @@ require_once "./connection_mysql/config.php";
         <button class="button" id="registerButton"> Registrati </button>
         <div id="registerForm"></div>
         <div id="loginForm"></div>
-        <script src="script.js"></script>
         <h2> per utilizzare il servizio</h2>
+        <div id="responseLogin"></div>
+        
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
