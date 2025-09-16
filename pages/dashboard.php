@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <p>AMLA AMLA</p>
+    <p>Benvenuto</p>
+    <h1><?php $_SESSION['userName'] ?></h1>
     <button id="logoutButton">Logout</button>
 
 <script src="checklogged.js"></script>
