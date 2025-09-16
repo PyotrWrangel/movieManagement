@@ -25,8 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         //verifica della password
         if (password_verify($password, $hash)) {
-            session_regenerate_id();     //da capire perche si fa ma immagino 
-            $_SESSION['id'] = session_id();
+            session_regenerate_id();  
             $_SESSION['session_user'] = $email;
             $_SESSION['userName'] = $username;
 

@@ -2,9 +2,9 @@
 
 session_start();
 
-$_SESSION = array(); //lo rendiamo un array vuoto per togliere tutte le info che sono state salvate
+session_unset(); //rimuove i dati dalla sessione
 
-session_destroy();
+session_regenerate_id(true);
 
 $data = [
     "messaggio" => "utente sloggato",
