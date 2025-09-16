@@ -1,13 +1,6 @@
-console.log('script caricato');
-
 const register = document.querySelector("#registerButton");
 if (register) {
 register.addEventListener("click", generateFormRegister);
-}
-
-const Logout = document.querySelector("#logoutButton");
-if(Logout) {
-Logout.addEventListener("click", logout);
 }
 
 //REGISTRAZIONE
@@ -105,28 +98,6 @@ function loginUtente(e) {
   .catch(err => console.error("errore fetch:", err));
 }
 
-//fetch controllo utente loggato
-
-fetch("/corsoPhp/phpmysql/movieManagement/pages/dashboard.php")
-.then((response) => response.json())
-.then(data => {
-  if(data.response === 0 && !window.location.pathname.endsWith("index.php")) {
-    window.location.href = '/corsoPhp/phpmysql/movieManagement/index.php';
-  }
-})
-
-//fetch utente sloggato
-function logout(e) {
-e.preventDefault();
-fetch("/corsoPhp/phpmysql/movieManagement/querys/logout.php")
-.then((response) => response.json())
-.then(data => {
-  if(data.response === 1) {
-  document.location.href = "/corsoPhp/phpmysql/movieManagement/index.php"
-  }
-})
-.catch (err => console.error("errore fetch: ", err));
-}
 
     //debug risposta grezza
       // .then(res => {
