@@ -36,11 +36,18 @@ function addUtente(e) {
       "Content-type": "application/json",
     },
     body: fd,
+    
   })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Errore nell addUtente: ", error);
-    });
+.then(res => res.text())
+.then(txt => {
+  console.log("📜 Risposta grezza:", txt);
+  try {
+    const data = JSON.parse(txt);   // prova a parsare
+    console.log("✅ JSON valido:", data);
+  } catch (err) {
+    console.error("❌ JSON non valido:", err.message);
+  }
+});
 }
 
 //LOGIN
@@ -101,9 +108,13 @@ function loginUtente(e) {
 
 
     //debug risposta grezza
-      // .then(res => {
-  //   console.log("status", res.status);
-  //   return res.text();
-  // })
-  // .then(txt => console.log("risposta grezza:", txt))
-
+// .then(res => res.text())
+// .then(txt => {
+//   console.log("📜 Risposta grezza:", txt);
+//   try {
+//     const data = JSON.parse(txt);   // prova a parsare
+//     console.log("✅ JSON valido:", data);
+//   } catch (err) {
+//     console.error("❌ JSON non valido:", err.message);
+//   }
+// });
