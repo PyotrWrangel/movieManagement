@@ -27,6 +27,7 @@ require_once "./connection_mysql/config.php";
         <h2>oppure</h2>
         <button class="button" id="registerButton"> Registrati </button>
         <div id="registerForm"></div>
+        <div id="responseRegister"></div>
         <div id="loginForm"></div>
         <h2> per utilizzare il servizio</h2>
         <div id="responseLogin"></div>
