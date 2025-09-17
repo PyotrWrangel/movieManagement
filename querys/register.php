@@ -12,6 +12,8 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 $stmt = $connessione->prepare("INSERT INTO userregister(userName, email, password_hash) VALUES (?, ?, ?)");
 $stmt->bind_param('sss', $username, $email, $hash);
 
+//usiamo try catch per le eccezioni
+try {
 if ($stmt ->execute()) {
     $data = [
         "messaggio" => "Utente registrato con successo",
@@ -19,18 +21,19 @@ if ($stmt ->execute()) {
     ];
 
     echo json_encode($data);
-}  else {
-     if ($connessione->errno === 1062) {   //errore che indica valore di entrata duplicato
-    $data = [
+    
+}
+} catch (mysqli_sql_exception $e) {
+    if ($e->getCode() === 1062) {
+           $data = [
         "messaggio" => "email gia registrata",
         "response"=> 0
     ];
     echo json_encode($data);
 } else {
     $data = [
-        "messaggio" => "errore interno",
+        "messaggio" => "Errore nel DB: " . $e->getMessage(),
         "response" => 2
     ];
-        echo json_encode($data);
 }
 }
