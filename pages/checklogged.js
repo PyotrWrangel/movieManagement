@@ -6,21 +6,24 @@ Logout.addEventListener("click", logout);
 //fetch utente sloggato
 function logout(e) {
 e.preventDefault();
-fetch("/corsoPhp/phpmysql/movieManagement/querys/logout.php")
+fetch("../querys/logout.php")
 .then((response) => response.json())
 .then(data => {
   if(data.response === 1) {
-  document.location.href = "/corsoPhp/phpmysql/movieManagement/index.php"
+  document.location.href = "../index.php"
   }
 })
-.catch (err => console.error("errore fetch: ", err));
+.catch (err => console.error("errore nel logout: ", err));
 }
 
 // fetch controllo login utente
-fetch("./checklogged.js")
+fetch("checklogged.php")
 .then((response) => response.json())
 .then(data => {
+  console.log('la risposta è', data.response);
   if(!window.location.pathname.endsWith("index.php") && data.response === 0) {
-    window.location.href = '/corsoPhp/phpmysql/movieManagement/index.php';
+    // console.log('la risposta è', data.response)
+    window.location.href = '../index.php';
   }
 })
+.catch (err => console.error("errore nel controllo login: ", err));

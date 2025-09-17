@@ -30,7 +30,7 @@ function addUtente(e) {
   console.log(form);
   const fd = new FormData(form);
 
-  fetch("/corsoPhp/phpmysql/movieManagement/querys/register.php", {
+  fetch("./querys/register.php", {
     method: "POST",
     header: {
       "Content-type": "application/json",
@@ -39,7 +39,7 @@ function addUtente(e) {
   })
     .then((response) => response.json())
     .catch((error) => {
-      console.error("Errore: ", error);
+      console.error("Errore nell addUtente: ", error);
     });
 }
 
@@ -73,12 +73,13 @@ function loginUtente(e) {
   const fd = new FormData(formLogin);
   console.log(fd);
 
-  fetch ("/corsoPhp/phpmysql/movieManagement/querys/login.php", {
+  fetch ("./querys/login.php", {
     method: 'POST',
     // headers: {
     //   "Content-type": "application/json",
     // },
     body: fd,
+    credentials: "include"
     
   })
 
@@ -95,7 +96,7 @@ function loginUtente(e) {
           <p style= " border: solid; border-color: red; background-color: rgba(255, 0, 0, 0.5); padding: 4px; border-radius: 6px;">Email o Password errate</p>`;
         }
       })
-  .catch(err => console.error("errore fetch:", err));
+  .catch(err => console.error("errore fetch login:", err));
 }
 
 

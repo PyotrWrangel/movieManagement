@@ -8,20 +8,24 @@ session_start();
 
 error_log('test');
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     //preparo la query
-    $stmt = $connessione->prepare("SELECT userName, password_hash FROM userRegister WHERE email=?");
+    $stmt = $connessione->prepare("SELECT id, userName, password_hash FROM userRegister WHERE email=?");
     //collego i parametri di input
     $stmt->bind_param('s', $email);
     //esecuzione
     $stmt->execute();
     //collego i parametri di output, quelli che la query restituisce
-    $stmt->bind_result($username, $hash);
+    //l'id del utente nel db sara collegato all'id della sessione
+    $stmt->bind_result($id, $username, $hash);
     //recupero la riga
     $stmt->fetch();
+    $_SESSION['id'] = $id;
 
         //verifica della password
         if (password_verify($password, $hash)) {
@@ -43,5 +47,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
             echo json_encode($data);
         }
-        //se non trova l'utente
+        error_log("SESSION dopo login: " . print_r($_SESSION, true));
 }
