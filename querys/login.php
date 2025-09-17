@@ -6,10 +6,6 @@ require_once '../connection_mysql/config.php';
 //facciamo partire la sessione
 session_start();
 
-error_log('test');
-
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];

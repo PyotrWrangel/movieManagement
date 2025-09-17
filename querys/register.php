@@ -12,16 +12,25 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 $stmt = $connessione->prepare("INSERT INTO userregister(userName, email, password_hash) VALUES (?, ?, ?)");
 $stmt->bind_param('sss', $username, $email, $hash);
 
-if($stmt->execute()) {
+if ($stmt ->execute()) {
     $data = [
         "messaggio" => "Utente registrato con successo",
         "response" => 1
     ];
+
     echo json_encode($data);
-} else {
+}  else {
+     if ($connessione->errno === 1062) {   //errore che indica valore di entrata duplicato
     $data = [
-        "messaggio" => $connessione->error,
+        "messaggio" => "email gia registrata",
         "response"=> 0
     ];
     echo json_encode($data);
+} else {
+    $data = [
+        "messaggio" => "errore interno",
+        "response" => 2
+    ];
+        echo json_encode($data);
+}
 }
